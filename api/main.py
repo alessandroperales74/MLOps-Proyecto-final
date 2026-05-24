@@ -121,7 +121,8 @@ def healthcheck():
 
     return {
         "status": "ok",
-        "model_loaded": artifact is not None
+        "model_loaded": artifact is not None,
+        "mensaje": "CI/CD Funcionando correctamente"
     }
 
 
