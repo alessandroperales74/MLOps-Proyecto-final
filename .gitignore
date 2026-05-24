@@ -14,6 +14,5 @@ mlflow.db
 .vscode/
 .DS_Store
 Thumbs.db
-*.joblib
 *.pkl
 .env
