@@ -2,19 +2,14 @@
 Etapa 1: Carga y validación del dataset de prevención de ataque cardiaco.
 """
 from __future__ import annotations
-
 import logging
 from pathlib import Path
-
 import pandas as pd
 
 log = logging.getLogger("DATA")
 
-
 TARGET = "Ataque_cardiaco"
-
 ID_COL = "ID"
-
 
 COLUMNAS_REQUERIDAS = {
     "ID",

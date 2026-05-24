@@ -1,0 +1,8 @@
+{
+    "timestamp": "20260524_0529",
+    "estado": "OK",
+    "drift_detectado": true,
+    "features_con_drift": 1,
+    "share_drifted": 0.2,
+    "total_features": 5
+}

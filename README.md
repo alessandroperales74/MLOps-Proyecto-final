@@ -6,6 +6,8 @@ Pipeline completo de Machine Learning orientado a predicción de ataque cardíac
 
 ```
 .
+├── api/
+│   └── main.py
 ├── artifacts/
 │   └── metrics.json
 │   └── model.joblib
@@ -13,13 +15,19 @@ Pipeline completo de Machine Learning orientado a predicción de ataque cardíac
 │   └── 2_DS_train_enf_corazon.csv.dvc
 ├── notebooks/
 │   └── ataque_cardiaco.ipynb
+├── notebooks/
+│   ├── 01_data_drift.html
+│   └── 02_data_quality.html
 ├── src/
 │   ├── load_data.py
 │   ├── features.py
 │   ├── preprocess.py
 │   ├── train.py
 │   ├── predict.py
-│   └── evaluate.py
+│   ├── load_data.py
+│   └── monitoreo/
+│       ├── drift.py
+│       └── pipeline_monitoreo.py
 ├── tests/
 │   ├── test_data.py
 │   ├── test_model.py
@@ -27,7 +35,7 @@ Pipeline completo de Machine Learning orientado a predicción de ataque cardíac
 ├── requirements.txt
 ├── Dockerfile
 ├── Makefile
-├── main.py
+├── run_pipeline.py
 ├── deploy.sh
 ├── params.yaml
 └── README.md

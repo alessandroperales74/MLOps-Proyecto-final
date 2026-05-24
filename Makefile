@@ -2,7 +2,7 @@ run:
 	python main.py
 
 api:
-	uvicorn app:app --reload --host 0.0.0.0 --port 8080
+	uvicorn api.main:app --reload --host 0.0.0.0 --port 8080
 
 mlflow:
 	mlflow ui --host 0.0.0.0 --port 5000
@@ -15,3 +15,9 @@ docker-run:
 
 dvc:
 	dvc repro
+
+monitor:
+	python src/monitoreo/pipeline_monitoreo.py
+
+monitor-drift:
+	python -m src.monitoreo.pipeline_monitoreo
