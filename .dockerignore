@@ -1,7 +1,10 @@
 venv/
 .venv/
 __pycache__/
-.pytest_cache/
+.git/
+.dvc/cache/
 mlruns/
 notebooks/
+.pytest_cache/
+*.pyc
 *.log

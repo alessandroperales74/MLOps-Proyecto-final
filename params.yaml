@@ -1,0 +1,27 @@
+data:
+
+  path: data/2_DS_train_enf_corazon.csv
+
+train:
+
+  random_state: 42
+
+  test_size: 0.2
+
+  balanceo: over
+
+model:
+
+  n_estimators: 100
+
+  learning_rate: 0.05
+
+  max_depth: 5
+
+  threshold: 0.5
+
+optuna:
+
+  n_trials: 10
+
+  timeout: 600

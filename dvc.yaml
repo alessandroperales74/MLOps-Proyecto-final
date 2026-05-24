@@ -1,0 +1,18 @@
+stages:
+
+  train:
+
+    cmd: python main.py
+
+    deps:
+      - main.py
+      - src/load_data.py
+      - src/features.py
+      - src/preprocess.py
+      - src/train.py
+      - src/evaluate.py
+      - data/2_DS_train_enf_corazon.csv
+
+    outs:
+      - artifacts/model.joblib
+      - artifacts/metrics.json
