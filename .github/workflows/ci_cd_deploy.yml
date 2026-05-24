@@ -1,0 +1,65 @@
+name: CI-CD-Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  test-and-deploy:
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run tests
+        run: |
+          pytest tests/ -v
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
+      - name: Setup gcloud
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Configure Docker
+        run: |
+          gcloud auth configure-docker us-central1-docker.pkg.dev
+
+      - name: Build Docker image
+        run: |
+          docker build \
+          -t us-central1-docker.pkg.dev/mlops-deploy-497300/ataque-cardiaco-api/ataque-cardiaco-api .
+
+      - name: Push Docker image
+        run: |
+          docker push \
+          us-central1-docker.pkg.dev/mlops-deploy-497300/ataque-cardiaco-api/ataque-cardiaco-api
+
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy ataque-cardiaco-api \
+            --image us-central1-docker.pkg.dev/mlops-deploy-497300/ataque-cardiaco-api/ataque-cardiaco-api \
+            --platform managed \
+            --region us-central1 \
+            --allow-unauthenticated
